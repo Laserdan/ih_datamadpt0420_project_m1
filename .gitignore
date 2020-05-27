@@ -106,3 +106,7 @@ venv.bak/
 # OS stuff:
 .DS_Store
 .idea
+
+# Carpetas a ignorar
+data/
+__trash__/
