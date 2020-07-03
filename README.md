@@ -37,13 +37,7 @@ The script `main_script.py` has 2 parameters to play with:
 To run the script for the first time it is highly recommended `-up True` to get the jobs information updated from the API.
 
 
-
-
-## **Start writing ASAP:**
-*Last but not least, by writing your README soon you give yourself some pretty significant advantages. Most importantly, you’re giving yourself a chance to think through the project without the overhead of having to change code every time you change your mind about how something should be organized or what should be included.*
-
-
-### :file_folder: **Folder structure**
+## **Folder structure**
 ```
 └── project
     ├── __trash__
@@ -71,4 +65,9 @@ To run the script for the first time it is highly recommended `-up True` to get 
         ├── processed
         └── results
 ```
+
+## **Output**
+
+Prints on terminal and exports a .csv file with a table that contains the country, Job title, Age, Quantity and percentage.
+![Image](https://i.ibb.co/SwdXq0r/imagen.png)
 
