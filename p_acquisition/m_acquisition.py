@@ -11,15 +11,18 @@ def acquire_db(path):
     engine = create_engine(f'sqlite:///{path}')
     return engine
 
+
 def get_table_from_db(table_name, path):
     # ----- Get tables from a database -----
     table_name = pd.read_sql_query(f'SELECT * FROM {table_name}', acquire_db(path))
     return table_name
 
+
 def get_tables(path):
     print('Connecting to database...')
     # ----- Get the name of all the tables of the database -----
-    db_tables_names = pd.read_sql_query("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name", acquire_db(path))
+    db_tables_names = pd.read_sql_query("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name",
+                                        acquire_db(path))
 
     # ----- Get all tables from database -----
     tables = [get_table_from_db(table, path) for table in db_tables_names['name']]
@@ -31,18 +34,20 @@ def get_tables(path):
     print('Acquisition completed')
     return tables
 
+
 def get_jobs(api, updt):
     if updt == 'True':
         return get_jobs_api(api)
-
     else:
         return get_jobs_csv()
+
 
 def get_jobs_csv():
     print('Reading jobs.csv from cache...')
     jobs_df = pd.read_csv(f'data/raw/jobs.csv')
     print('Jobs information acquired')
     return jobs_df
+
 
 def get_jobs_api(api):
     print('Connecting to api.dataatwork.org...\nGetting jobs information...')
@@ -57,7 +62,8 @@ def get_jobs_api(api):
     last_request = number_of_jobs % 500
 
     # ----- Make the requests -----
-    response_500s = [requests.get(f'http://api.dataatwork.org/v1/jobs?offset={500 * (request - 1)}&limit=500') for request in range(number_of_requests)]
+    response_500s = [requests.get(f'http://api.dataatwork.org/v1/jobs?offset={500 * (request - 1)}&limit=500') for
+                     request in range(number_of_requests)]
     response_last = requests.get(f'http://api.dataatwork.org/v1/jobs?offset={number_of_jobs - last_request}&limit=500')
 
     # ----- Get jsons from requests -----

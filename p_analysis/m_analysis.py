@@ -22,7 +22,7 @@ def analyze(table, country):
 
     # ----- Filter by country or all -----
     if country in countries:
-        table_to_analyze.loc[country].to_csv(f'data/results/results.csv') # ----- Export results as CSV -----
+        table_to_analyze.loc[country].to_csv(f'data/results/results_{country}.csv') # ----- Export results as CSV -----
         return table_to_analyze.loc[country]
     elif country == 'All':
         table_to_analyze.to_csv(f'data/results/results.csv')  # ----- Export results as CSV -----
